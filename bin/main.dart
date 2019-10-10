@@ -1,3 +1,5 @@
+import 'package:test/test.dart';
+
 // Write a test case which checks the board size is 3 by 3 and is empty
 
 // Challenge 1
@@ -28,7 +30,41 @@ void main() {
     } else {
       currentPlayer = 'X';
     }
+    if(win(board)==true)
+      {
+        break;
+      }
   }
+}
+
+bool win(List<List<String>> board)
+{
+  var value;
+  for (int i = 0; i < 3; i++) {
+    value = board[i][0]==' '?null:board[i][0];
+    if (value == board[i][1] && value == board[i][2]) {
+      print('$value  wins the board');
+      return true;
+    }
+
+    value = board[0][i]==' '?null:board[0][i];
+
+    if (value == board[1][i] && value == board[2][i]) {
+      print('$value wins the board');
+      return true;
+    }
+  }
+  value = board[0][0]==' '?null:board[0][0];
+  if (value == board[1][1] && value == board[2][2]) {
+    print('$value  wins the board');
+    return true;
+  }
+  value = board[0][2]==' '?null:board[0][2];
+  if (value == board[1][1] && value == board[2][0]) {
+    print('$value  wins the board');
+    return true;
+  }
+  return false;
 }
 
 // Challenge 2
